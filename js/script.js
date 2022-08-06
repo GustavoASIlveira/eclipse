@@ -12,8 +12,10 @@ const gameOverScore = $('#gameOverScore')
 const btnNewGame = $('#btnNewGame')
 const startModal = $('#startModal')
 const startContainer = $('#startContainer')
-const musicGame = $('#musicGame')
-	musicGame.volume = .5
+const musicGame = new Audio("./snd/game.mp3");
+musicGame.volume = 0.5;
+musicGame.loop = true;
+
 const EXPLOSION = 1
 const SHOOTING = 2
 
@@ -124,11 +126,9 @@ function newGame(){
 }
 
 function playSound(soundType){
-	const sound  = document.createElement('audio')
-	sound.src = soundType === EXPLOSION ? './snd/explosion.ogg' : './snd/shooting.mp3'
-	sound.addEventListener('canplaythrough',()=>{
-		sound.play()
-	})
+	const shootingSound = new Audio("./snd/shooting.mp3");
+  	const explosionSound = new Audio("./snd/explosion.ogg");
+  	soundType === EXPLOSION ? explosionSound.play() : shootingSound.play();
 }
 
 function checkProjectiles(){
